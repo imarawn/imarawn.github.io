@@ -2,7 +2,7 @@ async function loadAndFetchEmoticons() {
     const fileInput = document.getElementById('file-input');
     const resultsDiv = document.getElementById('results');
     if (fileInput.files.length === 0) {
-        alert('Bitte wählen Sie eine Datei aus.');
+        alert('please choose a file');
         return;
     }
     const file = fileInput.files[0];
@@ -24,7 +24,7 @@ async function fetchManualSlug() {
     const resultsDiv = document.getElementById('results');
     const slug = manualInput.value.trim();
     if (!slug) {
-        alert('Bitte geben Sie einen Slug ein.');
+        alert('please enter a keyword');
         return;
     }
     const response = await fetch(`https://emote.highwebmedia.com/autocomplete?slug=${slug}`);
