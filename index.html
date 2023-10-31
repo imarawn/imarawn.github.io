@@ -15,10 +15,9 @@
         </div>
         <div class="form-field">
             <label for="manual-slug-input">Enter Keyword:</label>
-            <input type="text" id="manual-slug-input">
+            <input type="text" id="manual-slug-input" oninput="performSearch()">
         </div>
         <div class="button-container">
-            <button class="button" onclick="fetchManualSlug()">Manual search</button>
             <button class="button" onclick="loadAndFetchEmoticons()">Show emotes from file</button>
         </div>
         <div id="results"></div>
