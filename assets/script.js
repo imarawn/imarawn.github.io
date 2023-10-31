@@ -62,7 +62,6 @@ function displayEmote(emote, parentElement) {
 
     img.addEventListener('click', () => {
         copyToClipboard(':' + emote.slug);
-        alert('Emote-Slug kopiert: :' + emote.slug);
     });
     
     const label = document.createElement('div');
