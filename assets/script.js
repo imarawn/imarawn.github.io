@@ -1,5 +1,6 @@
 let searchTimeout;
 
+
 async function loadAndFetchEmoticons() {
     const fileInput = document.getElementById('file-input');
     const resultsDiv = document.getElementById('results');
@@ -37,6 +38,15 @@ async function fetchManualSlug() {
     }
 }
 
+function copyToClipboard(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+}
+
 function displayEmote(emote, parentElement) {
     const emoteBox = document.createElement('div');
     emoteBox.className = 'emote-box';
@@ -49,9 +59,14 @@ function displayEmote(emote, parentElement) {
             emoteBox.style.backgroundColor = '#eb0c0c'; // Farbe für größere Bilder
         }
     };
+
+    img.addEventListener('click', () => {
+        copyToClipboard(':' + emote.slug);
+        alert('Emote-Slug kopiert: :' + emote.slug);
+    });
     
     const label = document.createElement('div');
-    label.textContent = ':' + emote.slug;
+    label.textContent = emote.slug;
     
     emoteBox.appendChild(img);
     emoteBox.appendChild(label);
