@@ -51,7 +51,7 @@ function displayEmote(emote, parentElement) {
     };
     
     const label = document.createElement('div');
-    label.textContent = emote.slug;
+    label.textContent = ':' + emote.slug;
     
     emoteBox.appendChild(img);
     emoteBox.appendChild(label);
