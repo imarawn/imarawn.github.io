@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoticon Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">Viewer</div>
+        <div class="form-field">
+            <label for="file-input">Choose List File:</label>
+            <input type="file" id="file-input" accept=".txt">
+        </div>
+        <div class="form-field">
+            <label for="manual-slug-input">Enter Keyword:</label>
+            <input type="text" id="manual-slug-input">
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="fetchManualSlug()">Manuellen Slug anzeigen</button>
+            <button class="button" onclick="loadAndFetchEmoticons()">Emotes aus Datei anzeigen</button>
+        </div>
+        <div id="results"></div>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>

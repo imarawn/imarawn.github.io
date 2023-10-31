@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'ubunturegular';
+    src: url('https://static-assets.highwebmedia.com/fonts/ubuntu/ubuntur-webfont.woff2') format('woff2'),
+         url('https://static-assets.highwebmedia.com/fonts/ubuntu/ubuntur-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntumedium';
+    src: url('https://static-assets.highwebmedia.com/fonts/ubuntu/ubuntum-webfont.woff2') format('woff2'),
+         url('https://static-assets.highwebmedia.com/fonts/ubuntu/ubuntum-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #275d7e;
+    font-family: 'ubuntumedium', sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #0b5d81;
+    font-family: 'ubunturegular', sans-serif;
+}
+
+.instructions {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field label {
+    font-size: 16px;
+    color: #444;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-field input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button {
+    background-color: #e5793a;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+}
+
+.button:hover {
+    background-color: #d4682d;
+}
+
+.emote-box {
+    border: 1px solid #e5793a;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #e5793a;
+    display: inline-block;
+    margin: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+.emote-box img {
+    max-width: 250px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+}
+
+.emote-image {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 8px;
+}
+
+.emote-name {
+    color: #fff;
+    font-size: 14px;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Zentriert die Schaltflächen horizontal */
+    gap: 20px; /* Gibt einen Abstand zwischen den Schaltflächen */
+}
+
+
+.form-field {
+    width: 100%;
+    max-width: 500px; /* oder ein anderes bevorzugtes Maximum */
+}
