@@ -64,20 +64,10 @@ function displayEmote(emote, parentElement) {
         if (width > 250 || height > 80) {
             emoteBox.style.backgroundColor = '#eb0c0c';
         }
-
-        const dimensionsLabel = document.createElement('div');
-        dimensionsLabel.textContent = `Dimensions: ${width}x${height}`;
-        emoteBox.appendChild(dimensionsLabel);
     };
-
-    // Fetch the file size using a HEAD request
     fetch(emote.url, { method: 'HEAD' })
         .then(response => {
             const fileSize = response.headers.get('Content-Length');
-            if (fileSize) {
-                const sizeLabel = document.createElement('div');
-                sizeLabel.textContent = `Size: ${formatBytes(fileSize)}`;
-                emoteBox.appendChild(sizeLabel);
             }
         })
         .catch(error => console.error('Error fetching file size:', error));
@@ -97,7 +87,7 @@ function displayEmote(emote, parentElement) {
     });
     
     const label = document.createElement('div');
-    label.textContent = ':' + emote.slug + ' ' + `Dimensions: ${width}x${height}`;
+    label.textContent = ':' + emote.slug + ' ' + `Dimensions: ${width}x${height} + ` formatBytes(fileSize)`;
     
     emoteBox.appendChild(img);
     emoteBox.appendChild(label);
