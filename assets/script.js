@@ -68,7 +68,7 @@ function displayEmote(emote, parentElement) {
         emoteBox.appendChild(dimensionsLabel);
     };
 
-    fetch(emote.url, { method: 'HEAD' })
+    /*fetch(emote.url, { method: 'HEAD' })
         .then(response => {
             const fileSize = response.headers.get('Content-Length');
             if (fileSize) {
@@ -90,7 +90,7 @@ function displayEmote(emote, parentElement) {
 
     img.addEventListener('click', () => {
         copyToClipboard(':' + emote.slug);
-    });
+    });*/
     
     const label = document.createElement('div');
     label.textContent = ':' + emote.slug;
