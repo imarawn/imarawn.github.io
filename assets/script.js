@@ -87,7 +87,7 @@ function displayEmote(emote, parentElement) {
     });
     
     const label = document.createElement('div');
-    label.textContent = ':' + emote.slug + ' ' + `Dimensions: ${width}x${height}` + ` formatBytes(fileSize)`;
+    label.textContent = ':' + emote.slug + ' ' + `Dimensions: ${width}x${height}` + ` ${formatBytes(fileSize)}`;
     
     emoteBox.appendChild(img);
     emoteBox.appendChild(label);
