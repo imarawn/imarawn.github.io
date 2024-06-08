@@ -1,7 +1,7 @@
 let searchTimeout;
 
         // The URL of the Discord webhook
-        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1249074911314444359/Bre5YYvZMQillY1-48Jkc8jByi52Xru2WPFA-nPqPiTOhu_hphO_JLoAPNSly3-KyJ3O'; // Replace with your actual Discord webhook URL
+
 
         async function loadAndFetchEmoticons() {
             const fileInput = document.getElementById('file-input');
@@ -72,7 +72,6 @@ let searchTimeout;
 
             img.addEventListener('click', async () => {
                 copyToClipboard(':' + emote.slug); // Copy the emote name when clicking on the image
-                await sendToDiscord(emote); // Send the emote to Discord when clicking on the image
             });
 
             const label = document.createElement('div');
@@ -83,35 +82,6 @@ let searchTimeout;
             parentElement.appendChild(emoteBox);
         }
 
-        // Function to send the emote details to the Discord webhook
-        async function sendToDiscord(emote) {
-            const webhookPayload = {
-                username: "Emote Bot", // You can customize the webhook name
-                content: `Emote Found: :${emote.slug}:`,
-                embeds: [
-                    {
-                        title: `Emote: ${emote.slug}`,
-                        description: `![Emote](${emote.url})`,
-                        image: {
-                            url: emote.url
-                        },
-                        color: 3447003 // A color for the embed, optional
-                    }
-                ]
-            };
-
-            const response = await fetch(DISCORD_WEBHOOK_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(webhookPayload)
-            });
-
-            if (!response.ok) {
-                console.error('Failed to send message to Discord:', response.statusText);
-            }
-        }
 
         function performSearch() {
             clearTimeout(searchTimeout);
