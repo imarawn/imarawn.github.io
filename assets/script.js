@@ -54,12 +54,46 @@ function displayEmote(emote, parentElement) {
     const img = document.createElement('img');
     img.src = emote.url;
     img.alt = emote.slug;
+    
+    // Load the image and get its natural dimensions
     img.onload = function() {
-        if (this.naturalWidth > 250 || this.naturalHeight > 80) {
-            emoteBox.style.backgroundColor = '#eb0c0c'; // Farbe für größere Bilder
+        const width = this.naturalWidth;
+        const height = this.naturalHeight;
+
+        // Set background color for larger images
+        if (width > 250 || height > 80) {
+            emoteBox.style.backgroundColor = '#eb0c0c'; // Color for larger images
         }
+
+        // Create a label for dimensions
+        const dimensionsLabel = document.createElement('div');
+        dimensionsLabel.textContent = `Dimensions: ${width}x${height}`;
+        emoteBox.appendChild(dimensionsLabel);
     };
 
+    // Fetch the file size using a HEAD request
+    fetch(emote.url, { method: 'HEAD' })
+        .then(response => {
+            const fileSize = response.headers.get('Content-Length');
+            if (fileSize) {
+                const sizeLabel = document.createElement('div');
+                sizeLabel.textContent = `Size: ${formatBytes(fileSize)}`;
+                emoteBox.appendChild(sizeLabel);
+            }
+        })
+        .catch(error => console.error('Error fetching file size:', error));
+
+    // Function to format bytes to a readable string
+    function formatBytes(bytes, decimals = 2) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+
+    // Copy emote slug to clipboard on click
     img.addEventListener('click', () => {
         copyToClipboard(':' + emote.slug);
     });
@@ -71,6 +105,7 @@ function displayEmote(emote, parentElement) {
     emoteBox.appendChild(label);
     parentElement.appendChild(emoteBox);
 }
+
 
 function performSearch() {
     clearTimeout(searchTimeout);
