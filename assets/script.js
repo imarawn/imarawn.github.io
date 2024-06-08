@@ -65,11 +65,13 @@ function displayEmote(emote, parentElement) {
     });
     
     const label = document.createElement('div');
+    const dimensions = document.createElement('div');
+    dimensions.textContent = emote.naturalWidth + ' ' + emote.naturalHeight;
     label.textContent = ':' + emote.slug;
     
     emoteBox.appendChild(img);
     emoteBox.appendChild(label);
-    
+    emotebox.appendChild(dimensions);
     parentElement.appendChild(emoteBox);
 }
 
