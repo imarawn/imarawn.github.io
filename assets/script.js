@@ -1,11 +1,43 @@
 let searchTimeout;
 
+// The URL of the Discord webhook
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1249074911314444359/Bre5YYvZMQillY1-48Jkc8jByi52Xru2WPFA-nPqPiTOhu_hphO_JLoAPNSly3-KyJ3O'; // Replace with your actual Discord webhook URL
+
+// Function to send the emote details to the Discord webhook
+async function sendToDiscord(emote) {
+    const webhookPayload = {
+        username: "Emote Bot", // You can customize the webhook name
+        content: `Emote Found: :${emote.slug}:`,
+        embeds: [
+            {
+                title: `Emote: ${emote.slug}`,
+                description: `![Emote](${emote.url})`,
+                image: {
+                    url: emote.url
+                },
+                color: 3447003 // A color for the embed, optional
+            }
+        ]
+    };
+    
+    const response = await fetch(DISCORD_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(webhookPayload)
+    });
+
+    if (!response.ok) {
+        console.error('Failed to send message to Discord:', response.statusText);
+    }
+}
 
 async function loadAndFetchEmoticons() {
     const fileInput = document.getElementById('file-input');
     const resultsDiv = document.getElementById('results');
     if (fileInput.files.length === 0) {
-        alert('please choose a file');
+        alert('Please choose a file');
         return;
     }
     const file = fileInput.files[0];
@@ -18,6 +50,7 @@ async function loadAndFetchEmoticons() {
         const exactEmote = data.emoticons.find(emote => emote.slug === slug);
         if (exactEmote) {
             displayEmote(exactEmote, resultsDiv);
+            await sendToDiscord(exactEmote); // Send the emote to Discord
         }
     }
 }
@@ -27,7 +60,7 @@ async function fetchManualSlug() {
     const resultsDiv = document.getElementById('results');
     const slug = manualInput.value.trim();
     if (!slug) {
-        alert('please enter a keyword');
+        alert('Please enter a keyword');
         return;
     }
     const response = await fetch(`https://emote.highwebmedia.com/autocomplete?slug=${slug}`);
@@ -35,6 +68,7 @@ async function fetchManualSlug() {
     resultsDiv.innerHTML = '';
     for (const emote of data.emoticons) {
         displayEmote(emote, resultsDiv);
+        await sendToDiscord(emote); // Send the emote to Discord
     }
 }
 
@@ -69,7 +103,7 @@ function displayEmote(emote, parentElement) {
     };
 
     img.addEventListener('click', () => {
-        copyToClipboard(':' + emote.slug); // Hier wird der Emoticon-Name beim Klicken auf das Bild kopiert
+        copyToClipboard(':' + emote.slug); // Copy the emote name when clicking on the image
     });
     
     const label = document.createElement('div');
@@ -79,8 +113,6 @@ function displayEmote(emote, parentElement) {
     emoteBox.appendChild(label);
     parentElement.appendChild(emoteBox);
 }
-
-
 
 function performSearch() {
     clearTimeout(searchTimeout);
@@ -98,6 +130,7 @@ function performSearch() {
         resultsDiv.innerHTML = '';
         for (const emote of data.emoticons) {
             displayEmote(emote, resultsDiv);
+            await sendToDiscord(emote); // Send the emote to Discord
         }
     }, 500);
 }
