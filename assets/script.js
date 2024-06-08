@@ -1,7 +1,7 @@
 let searchTimeout;
 
         // The URL of the Discord webhook
-        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/...'; // Replace with your actual Discord webhook URL
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1249074911314444359/Bre5YYvZMQillY1-48Jkc8jByi52Xru2WPFA-nPqPiTOhu_hphO_JLoAPNSly3-KyJ3O'; // Replace with your actual Discord webhook URL
 
         async function loadAndFetchEmoticons() {
             const fileInput = document.getElementById('file-input');
