@@ -66,7 +66,7 @@ function displayEmote(emote, parentElement) {
     
     const label = document.createElement('div');
     const dimensions = document.createElement('div');
-    dimensions.textContent = emote.naturalWidth + ' ' + emote.naturalHeight;
+    dimensions.textContent = 'test'
     label.textContent = ':' + emote.slug;
     
     emoteBox.appendChild(img);
@@ -76,14 +76,14 @@ function displayEmote(emote, parentElement) {
 }
 
 function performSearch() {
-    clearTimeout(searchTimeout); // Löscht das vorherige Timeout
+    clearTimeout(searchTimeout);
 
     searchTimeout = setTimeout(async () => {
         const manualInput = document.getElementById('manual-slug-input');
         const resultsDiv = document.getElementById('results');
         const slug = manualInput.value.trim();
         if (!slug) {
-            resultsDiv.innerHTML = ''; // Löscht die Ergebnisse, wenn das Eingabefeld leer ist
+            resultsDiv.innerHTML = '';
             return;
         }
         const response = await fetch(`https://emote.highwebmedia.com/autocomplete?slug=${slug}`);
@@ -92,8 +92,7 @@ function performSearch() {
         for (const emote of data.emoticons) {
             displayEmote(emote, resultsDiv);
         }
-    }, 500); // Wartet 500ms nach dem letzten Tastenanschlag, bevor die Suche ausgeführt wird
+    }, 500);
 }
 
-// Event-Listener hinzufügen, um die Suche bei jeder Eingabe auszuführen
 document.getElementById('manual-slug-input').addEventListener('input', performSearch);
