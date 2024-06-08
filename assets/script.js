@@ -68,29 +68,9 @@ function displayEmote(emote, parentElement) {
         emoteBox.appendChild(dimensionsLabel);
     };
 
-    /*fetch(emote.url, { method: 'HEAD' })
-        .then(response => {
-            const fileSize = response.headers.get('Content-Length');
-            if (fileSize) {
-                const sizeLabel = document.createElement('div');
-                sizeLabel.textContent = `Size: ${formatBytes(fileSize)}`;
-                emoteBox.appendChild(sizeLabel);
-            }
-        })
-        .catch(error => console.error('Error fetching file size:', error));
-
-    function formatBytes(bytes, decimals = 2) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const dm = decimals < 0 ? 0 : decimals;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-    }
-
     img.addEventListener('click', () => {
-        copyToClipboard(':' + emote.slug);
-    });*/
+        copyToClipboard(':' + emote.slug); // Hier wird der Emoticon-Name beim Klicken auf das Bild kopiert
+    });
     
     const label = document.createElement('div');
     label.textContent = ':' + emote.slug;
@@ -99,6 +79,7 @@ function displayEmote(emote, parentElement) {
     emoteBox.appendChild(label);
     parentElement.appendChild(emoteBox);
 }
+
 
 
 function performSearch() {
