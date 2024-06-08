@@ -69,7 +69,6 @@ function displayEmote(emote, parentElement) {
     
     emoteBox.appendChild(img);
     emoteBox.appendChild(label);
-    emotebox.appendChild(dimensions);
     parentElement.appendChild(emoteBox);
 }
 
